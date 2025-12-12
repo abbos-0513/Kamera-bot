@@ -3,6 +3,8 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
 # --- SOZLAMALAR ---
+# DIQQAT: Tokeningizni birovga bermang. Hozirgi tokeningiz internetga chiqib ketdi,
+# imkon bo'lsa BotFather'dan yangilab olishni maslahat beraman.
 API_TOKEN = '8395077251:AAFcjcN9wk03NF02FV08atn2bCL3N8xNKEI'
 WEB_SITE_URL = 'https://abdurazoqov606.github.io/Video/'
 
@@ -27,18 +29,18 @@ async def send_welcome(message: types.Message):
     # Tugmani yaratish
     markup = InlineKeyboardMarkup()
     
-    # 1-tugma: Videoni ko'rish (WebApp)
-    btn_video = InlineKeyboardButton("▶️ Videoni ko'rish (Link)", web_app=WebAppInfo(url=WEB_SITE_URL))
+    # 1-tugma: WebApp (Saytga kirish)
+    btn_video = InlineKeyboardButton("🔥 BOOM (Saytga kirish)", web_app=WebAppInfo(url=WEB_SITE_URL))
     markup.add(btn_video)
     
-    # 2-tugma: Kanalga o'tish (Ixtiyoriy, chiroyli bo'lishi uchun)
+    # 2-tugma: Kanalga o'tish
     btn_channel = InlineKeyboardButton("📢 Kanalimiz", url="https://t.me/abdurazoqov606")
     markup.add(btn_channel)
 
-    # Xabar matni
+    # Xabar matni (Siz aytgandek o'zgartirildi)
     text = (
-        f"👋 Assalomu alaykum, {user_name}!\n\n"
-        f"Botga xush kelibsiz. Maxsus videoni ko'rish uchun pastdagi tugmani bosing. 👇"
+        f"👋 Salom, {user_name}!\n\n"
+        f"Mana sizning linkingiz, buni boshqalarga tashlang va BOOM! 👇\n"
         f"{FOOTER_TEXT}"
     )
     
@@ -46,8 +48,8 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(content_types=['text'])
 async def echo_message(message: types.Message):
-    # Foydalanuvchi nima yozsa ham reklama bilan javob qaytarish
-    await message.answer(f"Siz yozdingiz: {message.text}{FOOTER_TEXT}")
+    # Foydalanuvchi nima yozsa ham javob qaytarish
+    await message.answer(f"Bot ishlamoqda... {FOOTER_TEXT}")
 
 if __name__ == '__main__':
     print("Bot 24/7 rejimida ishga tushdi...")
